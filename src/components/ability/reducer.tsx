@@ -1,8 +1,9 @@
 import { Reducer } from "redux";
 import { RequestState, GET_ABILITY } from "../../utils/constants";
-const initialState = { ability: {} };
+import { AbilityReducerInterface } from "./types";
+const initialState = { ability: null };
 
-const abilityReducer: Reducer<any, { type: string; payload: any }> = (
+const abilityReducer: Reducer<AbilityReducerInterface, { type: string; payload: any }> = (
   data = initialState,
   action
 ) => {
@@ -15,7 +16,7 @@ const abilityReducer: Reducer<any, { type: string; payload: any }> = (
       };
     }
     case GET_ABILITY + RequestState.FAIL: {
-      return { ...data, ability: {} };
+      return { ...data, ability: '' };
     }
 
     default:

@@ -5,13 +5,19 @@ import Pagination from "@material-ui/lab/Pagination";
 const useStyles = makeStyles(theme =>
   createStyles({
     root: {
-      display:'flex',
-      justifyContent:'center'
+      display: 'flex',
+      justifyContent: 'center'
     }
   })
 );
 
-const PokemonPagination = ({ handleChange, page, count }: any) => {
+interface PokemonPaginationInterface {
+  handleChange: (event: React.ChangeEvent<unknown>, value: number) => void;
+  page: number;
+  count: number;
+}
+
+const PokemonPagination = ({ handleChange, page, count }: PokemonPaginationInterface) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>

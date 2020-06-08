@@ -2,14 +2,12 @@ import { Reducer } from "redux";
 import {
   RequestState,
   GET_POKEMONS,
-  SET_LOAD
 } from "../../utils/constants";
-import { PokemonInterface } from "./types";
-import { PokemonReducerIntrtface } from "../../store/types";
-const initialState = { pokemons: [], load: false };
+import { PokemonsReducerInterface } from "./types";
+const initialState = { pokemons: [] };
 
 const pokemonReducer: Reducer<
-PokemonReducerIntrtface,
+  PokemonsReducerInterface,
   { type: string; payload: any }
 > = (data = initialState, action) => {
   switch (action.type) {
@@ -17,16 +15,10 @@ PokemonReducerIntrtface,
       return {
         ...data,
         pokemons: action.payload.results,
-        count: action.payload.count,
-        load: false
       };
     }
     case GET_POKEMONS + RequestState.FAIL: {
-      return { ...data, pokemons: [], load: false };
-    }
-
-    case SET_LOAD: {
-      return { ...data, load: action.payload };
+      return { ...data, pokemons: [] };
     }
 
     default:

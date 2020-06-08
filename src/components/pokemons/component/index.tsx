@@ -1,36 +1,35 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
-import CircularProgress from "@material-ui/core/CircularProgress";
+import { IApplicationState } from '../../../store/types';
+import { PokemonInterface } from '../../pokemon/types'
 import { getPokemons } from "../../pokemons/action";
 import Table from "./Table";
 import Pagination from "../../../ui/Pagination";
-import Header  from "../../../ui/Header";
+import Header from "../../../ui/Header";
 
 const useStyles = makeStyles({
   root: {
-padding:20,
+    padding: 20,
   },
 });
 
 const Pokemons = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const count = useSelector((state: any) => state.pokemons.count);
-  const pokemons = useSelector((state: any) => state.pokemons.pokemons);
-  const load = useSelector((state: any) => state.pokemons.load);
+  const pokemons = useSelector((state: IApplicationState) => state.pokemons.pokemons);
   const [page, setPage] = React.useState(1);
   const [filter, setFilter] = useState("");
   const filterdData = useMemo(
     () =>
-    pokemons?.filter((item: any) =>
+      pokemons?.filter((item: PokemonInterface) =>
         item.name.toLowerCase().includes(filter.toLowerCase())
       ),
-    [filter, pokemons, page]
+    [filter, pokemons]
   );
   const tableData = useMemo(
     () => filterdData?.slice((page - 1) * 20, (page - 1) * 20 + 20),
-    [filterdData]
+    [filterdData, page]
   );
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -41,9 +40,7 @@ const Pokemons = () => {
     };
     fetch();
   }, [dispatch]);
-  return  load ? (
-    <CircularProgress disableShrink />
-  ) :  (
+  return (
     <div className={classes.root}>
       <Header />
       <Pagination
@@ -58,7 +55,7 @@ const Pokemons = () => {
         count={filterdData?.length}
       />
     </div>)
-  
+
 };
 
 export default Pokemons;

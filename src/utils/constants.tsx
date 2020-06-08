@@ -11,7 +11,6 @@ export enum LoadingStatus {
   Reject = "Reject"
 }
 
-export const GET_TASK = "SET_POKEMON";
-export const GET_TASKS = "GET_POKEMONS";
-export const SET_LOAD = "SET_LOAD";
+export const GET_POKEMON = "GET_POKEMON";
+export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_ABILITY = "GET_ABILITY";

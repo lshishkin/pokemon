@@ -1,8 +1,9 @@
 import { Reducer } from "redux";
 import { RequestState, GET_POKEMON } from "../../utils/constants";
-const initialState = { pokemon: "" };
+import { PokemonReducerInterface } from "./types";
+const initialState = { pokemon: null };
 
-const pokemonReducer: Reducer<any, { type: string; payload: any }> = (
+const pokemonReducer: Reducer<PokemonReducerInterface, { type: string; payload: any }> = (
   data = initialState,
   action
 ) => {

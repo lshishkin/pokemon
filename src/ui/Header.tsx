@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme =>
   })
 );
 
-const Header = ({ prevPage, nextPage }: any) => {
+const Header = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>

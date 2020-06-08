@@ -1,9 +1,8 @@
+import { Dispatch } from "redux";
 import { GET_POKEMON } from "../../utils/constants";
 import { RequestState } from "../../utils/constants";
-import { setLoad } from "../pokemons/action";
 
-export const getPokemon = (id: any) => (dispatch: any) => {
-  dispatch(setLoad(true));
+export const getPokemon = (id: string) => (dispatch: Dispatch<{ type: string, payload?: any }>) => {
   fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
     .then(response => response.json())
     .then(json => {

@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { getAbility } from "./action";
-//import { UserInterface, PokemonInterface } from "../pokemons/types";
 import { IApplicationState } from "../../store/types";
 import Header from "../../ui/Header";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
@@ -31,7 +29,6 @@ const useStyles = makeStyles(theme =>
 const Ability = () => {
   const classes = useStyles();
   let { id } = useParams();
-  let history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
     const fetch = async () => {
@@ -42,16 +39,17 @@ const Ability = () => {
   const ability = useSelector(
     (state: IApplicationState) => state.ability.ability
   );
-  return (
+
+  return ability && (
     <div className={classes.root}>
       <Header />
 
       <div className={classes.card}>
         <p>
           <span className={classes.name}> Name:</span>
-          {ability.name}
+          {ability?.name}
         </p>
-        <p ><span  className={classes.name}> Description:</span>{ability?.effect_entries[1]?.effect}</p> 
+        <p ><span className={classes.name}> Description:</span>{ability?.effect_entries && ability.effect_entries[1].effect}</p>
       </div>
     </div>
   );
