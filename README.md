@@ -1,2 +1,0 @@
-# pokemon
-Created with CodeSandbox
