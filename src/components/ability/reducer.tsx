@@ -9,7 +9,6 @@ const abilityReducer: Reducer<AbilityReducerInterface, { type: string; payload: 
 ) => {
   switch (action.type) {
     case GET_ABILITY + RequestState.SUCCESS: {
-      console.log(action.payload);
       return {
         ...data,
         ability: action.payload

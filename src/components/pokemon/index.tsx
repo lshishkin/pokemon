@@ -63,12 +63,12 @@ const Pokemon = () => {
         <Divider />
         <p>Types:</p>
         <ul>
-          {pokemon?.types?.map((item: TypePokemonInterface) => <li>{item.type.name}</li>)}
+          {pokemon?.types?.map((item: TypePokemonInterface) => <li key={item.type.name}>{item.type.name}</li>)}
         </ul>
         <p>Abilities:</p>
         <ul>
           {pokemon?.abilities?.map((item: AbilityPokemonInterface) => 
-          <li onClick={() => history.push(`/ability/${getNumber(item.ability.url)}`)}>
+          <li key={item.ability.url} onClick={() => history.push(`/ability/${getNumber(item.ability.url)}`)}>
             <Link
               component="button"
               variant="body2"
